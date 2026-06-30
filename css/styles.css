@@ -1134,6 +1134,7 @@ h1, h2, h3, h4 {
   border-radius: 50%; background: var(--teal); flex-shrink: 0;
 }
 .service-row-image { min-height: 240px; margin: clamp(14px, 2vw, 24px); border-radius: var(--radius-lg); overflow: hidden; }
+.service-row[id] { scroll-margin-top: calc(var(--nav-height) + 24px); }
 
 /* ============================================================
    PORTFOLIO PAGE
