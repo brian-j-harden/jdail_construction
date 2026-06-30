@@ -580,10 +580,9 @@ h1, h2, h3, h4 {
    WHY US SECTION — Light version with teal accents
    ============================================================ */
 .why-us-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(40px, 6vw, 80px);
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 5vw, 64px);
 }
 .why-us-content h2 {
   font-size: clamp(var(--text-3xl), 3.5vw, var(--text-5xl));
@@ -627,9 +626,10 @@ h1, h2, h3, h4 {
   stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
 }
 .why-us-image {
+  width: 100%;
+  height: clamp(300px, 38vw, 560px);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  aspect-ratio: 2/3;
   border: 1px solid var(--border);
 }
 
@@ -1508,9 +1508,9 @@ h1, h2, h3, h4 {
   .about-intro-grid,
   .contact-grid { grid-template-columns: 1fr; }
 
-  .why-us-image,
   .area-map,
   .about-intro-image { height: 280px; aspect-ratio: unset; }
+  .why-us-image { height: 240px; }
 
   .process-steps { grid-template-columns: repeat(2, 1fr); }
 
