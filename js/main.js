@@ -83,6 +83,43 @@
     });
   }
 
+  /* --- Before/After Sliders --- */
+  document.querySelectorAll('.ba-slider').forEach(function (slider) {
+    var after = slider.querySelector('.ba-after');
+    var before = slider.querySelector('.ba-before');
+    var handle = slider.querySelector('.ba-handle');
+    var active = false;
+
+    function update(clientX) {
+      var rect = slider.getBoundingClientRect();
+      var pct = Math.min(100, Math.max(0, (clientX - rect.left) / rect.width * 100));
+      after.style.clipPath  = 'inset(0 0 0 ' + pct.toFixed(1) + '%)';
+      before.style.clipPath = 'inset(0 ' + (100 - pct).toFixed(1) + '% 0 0)';
+      handle.style.left = pct.toFixed(1) + '%';
+    }
+
+    function snap() {
+      active = false;
+      slider.classList.remove('dragging');
+      after.style.clipPath  = 'inset(0 0 0 50%)';
+      before.style.clipPath = 'inset(0 50% 0 0)';
+      handle.style.left = '50%';
+    }
+
+    slider.addEventListener('pointerdown', function (e) {
+      active = true;
+      slider.classList.add('dragging'); // disables CSS transitions during drag
+      slider.setPointerCapture(e.pointerId);
+      update(e.clientX);
+      e.preventDefault();
+    });
+    slider.addEventListener('pointermove', function (e) {
+      if (active) update(e.clientX);
+    });
+    slider.addEventListener('pointerup', snap);
+    slider.addEventListener('pointercancel', snap);
+  });
+
   /* --- Contact form basic validation --- */
   const contactForm = document.querySelector('#contact-form');
 
